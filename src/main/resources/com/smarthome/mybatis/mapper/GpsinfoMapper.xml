@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarthome.mybatis.mapper.GpsinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.smarthome.mybatis.po.Gpsinfo" >
+    <constructor >
+      <idArg column="gpsinfoId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sensorId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="logtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="longtitude" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="lltitude" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="location" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gpsinfoId, sensorId, userId, logtime, longtitude, lltitude, `location`
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gpsinfo
+    where gpsinfoId = #{gpsinfoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gpsinfo
+    where gpsinfoId = #{gpsinfoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.smarthome.mybatis.po.Gpsinfo" >
+    insert into gpsinfo (gpsinfoId, sensorId, userId, 
+      logtime, longtitude, lltitude, 
+      `location`)
+    values (#{gpsinfoId,jdbcType=INTEGER}, #{sensorId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{logtime,jdbcType=TIMESTAMP}, #{longtitude,jdbcType=DOUBLE}, #{lltitude,jdbcType=DOUBLE}, 
+      #{location,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smarthome.mybatis.po.Gpsinfo" >
+    insert into gpsinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gpsinfoId != null" >
+        gpsinfoId,
+      </if>
+      <if test="sensorId != null" >
+        sensorId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="logtime != null" >
+        logtime,
+      </if>
+      <if test="longtitude != null" >
+        longtitude,
+      </if>
+      <if test="lltitude != null" >
+        lltitude,
+      </if>
+      <if test="location != null" >
+        `location`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gpsinfoId != null" >
+        #{gpsinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="sensorId != null" >
+        #{sensorId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="logtime != null" >
+        #{logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="longtitude != null" >
+        #{longtitude,jdbcType=DOUBLE},
+      </if>
+      <if test="lltitude != null" >
+        #{lltitude,jdbcType=DOUBLE},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smarthome.mybatis.po.Gpsinfo" >
+    update gpsinfo
+    <set >
+      <if test="sensorId != null" >
+        sensorId = #{sensorId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="logtime != null" >
+        logtime = #{logtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="longtitude != null" >
+        longtitude = #{longtitude,jdbcType=DOUBLE},
+      </if>
+      <if test="lltitude != null" >
+        lltitude = #{lltitude,jdbcType=DOUBLE},
+      </if>
+      <if test="location != null" >
+        `location` = #{location,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gpsinfoId = #{gpsinfoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smarthome.mybatis.po.Gpsinfo" >
+    update gpsinfo
+    set sensorId = #{sensorId,jdbcType=INTEGER},
+      userId = #{userId,jdbcType=INTEGER},
+      logtime = #{logtime,jdbcType=TIMESTAMP},
+      longtitude = #{longtitude,jdbcType=DOUBLE},
+      lltitude = #{lltitude,jdbcType=DOUBLE},
+      `location` = #{location,jdbcType=VARCHAR}
+    where gpsinfoId = #{gpsinfoId,jdbcType=INTEGER}
+  </update>
+</mapper>

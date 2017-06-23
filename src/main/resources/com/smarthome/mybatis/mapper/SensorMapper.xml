@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarthome.mybatis.mapper.SensorMapper" >
+  <resultMap id="BaseResultMap" type="com.smarthome.mybatis.po.Sensor" >
+    <constructor >
+      <idArg column="sensorId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sensorType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sensorName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="sensorDesc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sensorId, sensorType, sensorName, sensorDesc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sensor
+    where sensorId = #{sensorId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sensor
+    where sensorId = #{sensorId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.smarthome.mybatis.po.Sensor" >
+    insert into sensor (sensorId, sensorType, sensorName, 
+      sensorDesc)
+    values (#{sensorId,jdbcType=INTEGER}, #{sensorType,jdbcType=VARCHAR}, #{sensorName,jdbcType=VARCHAR}, 
+      #{sensorDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smarthome.mybatis.po.Sensor" >
+    insert into sensor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sensorId != null" >
+        sensorId,
+      </if>
+      <if test="sensorType != null" >
+        sensorType,
+      </if>
+      <if test="sensorName != null" >
+        sensorName,
+      </if>
+      <if test="sensorDesc != null" >
+        sensorDesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sensorId != null" >
+        #{sensorId,jdbcType=INTEGER},
+      </if>
+      <if test="sensorType != null" >
+        #{sensorType,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorName != null" >
+        #{sensorName,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorDesc != null" >
+        #{sensorDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smarthome.mybatis.po.Sensor" >
+    update sensor
+    <set >
+      <if test="sensorType != null" >
+        sensorType = #{sensorType,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorName != null" >
+        sensorName = #{sensorName,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorDesc != null" >
+        sensorDesc = #{sensorDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sensorId = #{sensorId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smarthome.mybatis.po.Sensor" >
+    update sensor
+    set sensorType = #{sensorType,jdbcType=VARCHAR},
+      sensorName = #{sensorName,jdbcType=VARCHAR},
+      sensorDesc = #{sensorDesc,jdbcType=VARCHAR}
+    where sensorId = #{sensorId,jdbcType=INTEGER}
+  </update>
+</mapper>

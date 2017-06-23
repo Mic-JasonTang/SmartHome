@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarthome.mybatis.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.smarthome.mybatis.po.User" >
+    <constructor >
+      <idArg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userPwd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userSex" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userBirth" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="userEmail" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userTel" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userIDCard" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userdatetime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userId, userType, userName, userPwd, userSex, userBirth, userEmail, userTel, userIDCard, 
+    userdatetime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userId = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where userId = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.smarthome.mybatis.po.User" >
+    insert into user (userId, userType, userName, 
+      userPwd, userSex, userBirth, 
+      userEmail, userTel, userIDCard, 
+      userdatetime)
+    values (#{userId,jdbcType=INTEGER}, #{userType,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userPwd,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}, #{userBirth,jdbcType=DATE}, 
+      #{userEmail,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR}, #{userIDCard,jdbcType=VARCHAR}, 
+      #{userdatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smarthome.mybatis.po.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="userType != null" >
+        userType,
+      </if>
+      <if test="userName != null" >
+        userName,
+      </if>
+      <if test="userPwd != null" >
+        userPwd,
+      </if>
+      <if test="userSex != null" >
+        userSex,
+      </if>
+      <if test="userBirth != null" >
+        userBirth,
+      </if>
+      <if test="userEmail != null" >
+        userEmail,
+      </if>
+      <if test="userTel != null" >
+        userTel,
+      </if>
+      <if test="userIDCard != null" >
+        userIDCard,
+      </if>
+      <if test="userdatetime != null" >
+        userdatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userType != null" >
+        #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirth != null" >
+        #{userBirth,jdbcType=DATE},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userIDCard != null" >
+        #{userIDCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userdatetime != null" >
+        #{userdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smarthome.mybatis.po.User" >
+    update user
+    <set >
+      <if test="userType != null" >
+        userType = #{userType,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userPwd != null" >
+        userPwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+        userSex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirth != null" >
+        userBirth = #{userBirth,jdbcType=DATE},
+      </if>
+      <if test="userEmail != null" >
+        userEmail = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        userTel = #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userIDCard != null" >
+        userIDCard = #{userIDCard,jdbcType=VARCHAR},
+      </if>
+      <if test="userdatetime != null" >
+        userdatetime = #{userdatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where userId = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smarthome.mybatis.po.User" >
+    update user
+    set userType = #{userType,jdbcType=VARCHAR},
+      userName = #{userName,jdbcType=VARCHAR},
+      userPwd = #{userPwd,jdbcType=VARCHAR},
+      userSex = #{userSex,jdbcType=VARCHAR},
+      userBirth = #{userBirth,jdbcType=DATE},
+      userEmail = #{userEmail,jdbcType=VARCHAR},
+      userTel = #{userTel,jdbcType=VARCHAR},
+      userIDCard = #{userIDCard,jdbcType=VARCHAR},
+      userdatetime = #{userdatetime,jdbcType=TIMESTAMP}
+    where userId = #{userId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByTelOrEmail" resultType="com.smarthome.mybatis.po.User" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user
+    <where>
+    <if test="tel != null">
+      userTel = #{tel}
+    </if>
+    <if test="email != null">
+      AND
+      userEmail = #{email}
+    </if>
+    </where>
+  </select>
+
+  <select id="selectByTelOrEmailAndPwd" resultType="com.smarthome.mybatis.po.User" >
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM user
+    <where>
+      <if test="tel != null">
+        userTel = #{tel}
+      </if>
+      <if test="email != null">
+        AND
+        userEmail = #{email}
+      </if>
+      AND  userPwd = #{pwd}
+    </where>
+  </select>
+</mapper>

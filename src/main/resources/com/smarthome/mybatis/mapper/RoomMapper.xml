@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarthome.mybatis.mapper.RoomMapper" >
+  <resultMap id="BaseResultMap" type="com.smarthome.mybatis.po.Room" >
+    <constructor >
+      <idArg column="roomId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="roomType" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="roomOrder" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="roomDesc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    roomId, roomType, roomOrder, roomDesc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from room
+    where roomId = #{roomId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from room
+    where roomId = #{roomId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.smarthome.mybatis.po.Room" >
+    insert into room (roomId, roomType, roomOrder, 
+      roomDesc)
+    values (#{roomId,jdbcType=INTEGER}, #{roomType,jdbcType=VARCHAR}, #{roomOrder,jdbcType=INTEGER}, 
+      #{roomDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smarthome.mybatis.po.Room" >
+    insert into room
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roomId != null" >
+        roomId,
+      </if>
+      <if test="roomType != null" >
+        roomType,
+      </if>
+      <if test="roomOrder != null" >
+        roomOrder,
+      </if>
+      <if test="roomDesc != null" >
+        roomDesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roomId != null" >
+        #{roomId,jdbcType=INTEGER},
+      </if>
+      <if test="roomType != null" >
+        #{roomType,jdbcType=VARCHAR},
+      </if>
+      <if test="roomOrder != null" >
+        #{roomOrder,jdbcType=INTEGER},
+      </if>
+      <if test="roomDesc != null" >
+        #{roomDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smarthome.mybatis.po.Room" >
+    update room
+    <set >
+      <if test="roomType != null" >
+        roomType = #{roomType,jdbcType=VARCHAR},
+      </if>
+      <if test="roomOrder != null" >
+        roomOrder = #{roomOrder,jdbcType=INTEGER},
+      </if>
+      <if test="roomDesc != null" >
+        roomDesc = #{roomDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where roomId = #{roomId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smarthome.mybatis.po.Room" >
+    update room
+    set roomType = #{roomType,jdbcType=VARCHAR},
+      roomOrder = #{roomOrder,jdbcType=INTEGER},
+      roomDesc = #{roomDesc,jdbcType=VARCHAR}
+    where roomId = #{roomId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarthome.mybatis.mapper.BuildingMapper" >
+  <resultMap id="BaseResultMap" type="com.smarthome.mybatis.po.Building" >
+    <constructor >
+      <idArg column="buildingId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buildingNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="buildingName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="buildingDesc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    buildingId, buildingNo, buildingName, buildingDesc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from building
+    where buildingId = #{buildingId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from building
+    where buildingId = #{buildingId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.smarthome.mybatis.po.Building" >
+    insert into building (buildingId, buildingNo, buildingName, 
+      buildingDesc)
+    values (#{buildingId,jdbcType=INTEGER}, #{buildingNo,jdbcType=VARCHAR}, #{buildingName,jdbcType=VARCHAR}, 
+      #{buildingDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smarthome.mybatis.po.Building" >
+    insert into building
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="buildingId != null" >
+        buildingId,
+      </if>
+      <if test="buildingNo != null" >
+        buildingNo,
+      </if>
+      <if test="buildingName != null" >
+        buildingName,
+      </if>
+      <if test="buildingDesc != null" >
+        buildingDesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="buildingId != null" >
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingNo != null" >
+        #{buildingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingName != null" >
+        #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingDesc != null" >
+        #{buildingDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smarthome.mybatis.po.Building" >
+    update building
+    <set >
+      <if test="buildingNo != null" >
+        buildingNo = #{buildingNo,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingName != null" >
+        buildingName = #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingDesc != null" >
+        buildingDesc = #{buildingDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where buildingId = #{buildingId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smarthome.mybatis.po.Building" >
+    update building
+    set buildingNo = #{buildingNo,jdbcType=VARCHAR},
+      buildingName = #{buildingName,jdbcType=VARCHAR},
+      buildingDesc = #{buildingDesc,jdbcType=VARCHAR}
+    where buildingId = #{buildingId,jdbcType=INTEGER}
+  </update>
+</mapper>

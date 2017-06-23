@@ -1,0 +1,379 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="css/ace.min.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/hightcharts/highcharts.css"/>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrap-switch/bootstrap-switch.min.js"></script>
+    <script type="text/javascript" src="js/hightcharts/highcharts.js"></script>
+    <script type="text/javascript" src="js/hightcharts/exporting.js"></script>
+    <script type="text/javascript" src="js/hightcharts/highcharts-zh_CN.js"></script>
+    <script type="application/javascript">
+        $(function () {
+            $("#door").bootstrapSwitch({
+                onText: "开门",
+                offText: "关门",
+                onColor: "success",
+                offColor: "danger",
+                size: "small",
+                onSwitchChange: function (event, state) {
+                    if (state == true) {
+                        $(this).val("1");
+                    } else {
+                        $(this).val("2");
+                    }
+                }
+            });
+            $("#yanwu").bootstrapSwitch({
+                onText: "启动",
+                offText: "停止",
+                onColor: "success",
+                offColor: "danger",
+                size: "small",
+                onSwitchChange: function (event, state) {
+                    if (state == true) {
+                        $(this).val("1");
+                    } else {
+                        $(this).val("2");
+                    }
+                }
+            });
+            $("#keting").bootstrapSwitch({
+                onText: "开灯",
+                offText: "关灯",
+                onColor: "success",
+                offColor: "info",
+                size: "small",
+                onSwitchChange: function (event, state) {
+                    if (state == true) {
+                        $(this).val("1");
+                    } else {
+                        $(this).val("2");
+                    }
+                }
+            });
+            $("#zhuwo").bootstrapSwitch({
+                onText: "开灯",
+                offText: "关灯",
+                onColor: "success",
+                offColor: "info",
+                size: "small",
+                onSwitchChange: function (event, state) {
+                    if (state == true) {
+                        $(this).val("1");
+                    } else {
+                        $(this).val("2");
+                    }
+                }
+            });
+            $("#ciwo").bootstrapSwitch({
+                onText: "开灯",
+                offText: "关灯",
+                onColor: "success",
+                offColor: "info",
+                size: "small",
+                onSwitchChange: function (event, state) {
+                    if (state == true) {
+                        $(this).val("1");
+                    } else {
+                        $(this).val("2");
+                    }
+                }
+            });
+            $("#kitchen").bootstrapSwitch({
+                onText: "开灯",
+                offText: "关灯",
+                onColor: "success",
+                offColor: "info",
+                size: "small",
+                onSwitchChange: function (event, state) {
+                    if (state == true) {
+                        $(this).val("1");
+                    } else {
+                        $(this).val("2");
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="hr hr32 hr-dotted"></div>
+<div class="row">
+    <!-- 安防 -->
+    <div class="space-6"></div>
+    <div class="col-sm-7 infobox-container">
+        <div class="widget-header widget-header-flat">
+            <h4 class="lighter">
+                <i class="icon-lock orange"></i>
+                智能安防
+            </h4>
+
+            <div class="widget-toolbar">
+                <a href="#" data-action="collapse">
+                    <i class="icon-lock"></i>
+                </a>
+            </div>
+        </div>
+        <div class="widget-body">
+            <div class="widget-main no-padding">
+                <div class="infobox infobox-wood  ">
+                    <div class="infobox-icon">
+                        <i class="icon-lock"></i>
+                    </div>
+                    <div class="controll-lable">
+                        <span class="controll-num">大门</span>
+                        <div class="infobox-content">门锁</div>
+                    </div>
+                    <div class="controll">
+                        <div class="switch">
+                            <input id="door" type="checkbox" checked/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="infobox infobox-green2  ">
+                    <div class="infobox-icon">
+                        <i class="icon-fire"></i>
+                    </div>
+                    <div class="controll-lable">
+                        <span class="controll-num">无</span>
+                        <div class="infobox-content">烟雾</div>
+                    </div>
+                    <div class="controll">
+                        <div class="switch">
+                            <input id="yanwu" type="checkbox" checked/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="infobox infobox-pink  ">
+                    <div class="infobox-icon">
+                        <i class="icon-fire"></i>
+                    </div>
+                    <div class="controll-lable">
+                        <span class="controll-num">25.2℃</span>
+                        <div class="infobox-content">温度</div>
+                    </div>
+                    <div class="badge badge-success">
+                        -2℃
+                        <i class="icon-arrow-down"></i>
+                    </div>
+                </div>
+
+                <div class="infobox infobox-blue3  ">
+                    <div class="infobox-icon">
+                        <i class="icon-fire"></i>
+                    </div>
+                    <div class="controll-lable">
+                        <span class="controll-num">17%</span>
+                        <div class="infobox-content">湿度</div>
+                    </div>
+                    <div class="badge badge-danger">
+                        +3%
+                        <i class="icon-arrow-up"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space-6"></div>
+        <div class="blank">
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">
+                    <i class="icon-remove"></i>
+                </button>
+                <strong id="result">Good Job!</strong>
+                <span>客厅的灯开启成功！</span>
+                <br>
+            </div>
+        </div>
+        <!-- 灯光控制 -->
+        <div class="widget-header widget-header-flat">
+            <h4 class="lighter">
+                <i class="icon-lightbulb orange"></i>
+                灯光控制
+            </h4>
+
+            <div class="widget-toolbar">
+                <a href="#" data-action="collapse">
+                    <i class="icon-lightbulb"></i>
+                </a>
+            </div>
+        </div>
+            <div class="widget-body">
+                <div class="widget-main no-padding">
+                    <div class="infobox infobox-green  ">
+                        <div class="infobox-icon">
+                            <i class="icon-lightbulb"></i>
+                        </div>
+                        <div class="controll-lable">
+                            <span class="controll-num">客厅</span>
+                            <div class="infobox-content">灯光</div>
+                        </div>
+                        <div class="controll">
+                            <div class="switch">
+                                <input id="keting" type="checkbox" checked/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="infobox infobox-blue  ">
+                        <div class="infobox-icon">
+                            <i class="icon-lightbulb"></i>
+                        </div>
+                        <div class="controll-lable">
+                            <span class="controll-num">主卧</span>
+                            <div class="infobox-content">灯光</div>
+                        </div>
+                        <div class="controll">
+                            <div class="switch">
+                                <input id="zhuwo" type="checkbox" checked/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="infobox infobox-pink  ">
+                        <div class="infobox-icon">
+                            <i class="icon-lightbulb"></i>
+                        </div>
+                        <div class="controll-lable">
+                            <span class="controll-num">次卧</span>
+                            <div class="infobox-content">灯光</div>
+                        </div>
+                        <div class="controll">
+                            <div class="switch">
+                                <input id="ciwo" type="checkbox" checked/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="infobox infobox-red  ">
+                        <div class="infobox-icon">
+                            <i class="icon-lightbulb"></i>
+                        </div>
+                        <div class="controll-lable">
+                            <span class="controll-num">厨房</span>
+                            <div class="infobox-content">灯光</div>
+                        </div>
+                        <div class="controll">
+                            <div class="switch">
+                                <input id="kitchen" type="checkbox" checked/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- 统计数据 -->
+    <div class="vspace-sm"></div>
+    <div class="col-sm-5">
+        <div class="widget-box">
+            <div class="widget-header widget-header-flat widget-header-small">
+                <h5>
+                    <i class="icon-signal"></i>
+                    数据统计
+                </h5>
+
+                <div class="widget-toolbar no-border">
+                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
+                        本周
+                        <i class="icon-angle-down icon-on-right bigger-110"></i>
+                    </button>
+
+                    <ul class="dropdown-menu pull-right dropdown-125 dropdown-lighter dropdown-caret">
+                        <li class="active">
+                            <a href="#" class="blue">
+                                <i class="icon-caret-right bigger-110">&nbsp;</i>
+                                本周
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="icon-caret-right bigger-110 invisible">&nbsp;</i>
+                                上周
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="icon-caret-right bigger-110 invisible">&nbsp;</i>
+                                本月
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="icon-caret-right bigger-110 invisible">&nbsp;</i>
+                                上月
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="widget-body">
+                <div class="widget-main">
+                    <div id="piechart-placeholder"></div>
+
+                    <div class="hr hr8 hr-double"></div>
+
+                    <div class="clearfix">
+                        <div id="container1" style="min-width:400px;height:350px"></div>
+                    </div>
+                </div><!-- /widget-main -->
+            </div><!-- /widget-body -->
+        </div><!-- /widget-box -->
+    </div><!-- /span -->
+</div><!-- /row -->
+<div class="hr hr32 hr-dotted"></div>
+
+</body>
+<script>
+    $(function () {
+        $('#container1').highcharts({
+            chart: {
+                type: 'line'
+            },
+            title: {
+                text: '温度湿度'
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38',
+                    '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38', '2017年6月18日12:12:38']
+            },
+            yAxis: {
+                title: {
+                    text: '百分比'
+                }
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true          // 开启数据标签
+                    },
+                    enableMouseTracking: false // 关闭鼠标跟踪，对应的提示框、点击事件会失效
+                }
+            },
+            series: [{
+                name: '温度',
+                data: [7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6, 7.0, 6.9, 9.5, 14.5, 18.4, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+            }, {
+                name: '湿度',
+                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8, 3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+            }]
+        });
+    });
+</script>
+</html>

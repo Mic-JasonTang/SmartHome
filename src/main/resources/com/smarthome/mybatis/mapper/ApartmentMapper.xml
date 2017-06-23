@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarthome.mybatis.mapper.ApartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.smarthome.mybatis.po.Apartment" >
+    <constructor >
+      <idArg column="apartmentId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="apartmentName" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="apartmentDesc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    apartmentId, apartmentName, apartmentDesc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from apartment
+    where apartmentId = #{apartmentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from apartment
+    where apartmentId = #{apartmentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.smarthome.mybatis.po.Apartment" >
+    insert into apartment (apartmentId, apartmentName, apartmentDesc
+      )
+    values (#{apartmentId,jdbcType=INTEGER}, #{apartmentName,jdbcType=VARCHAR}, #{apartmentDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.smarthome.mybatis.po.Apartment" >
+    insert into apartment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="apartmentId != null" >
+        apartmentId,
+      </if>
+      <if test="apartmentName != null" >
+        apartmentName,
+      </if>
+      <if test="apartmentDesc != null" >
+        apartmentDesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="apartmentId != null" >
+        #{apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="apartmentName != null" >
+        #{apartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="apartmentDesc != null" >
+        #{apartmentDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smarthome.mybatis.po.Apartment" >
+    update apartment
+    <set >
+      <if test="apartmentName != null" >
+        apartmentName = #{apartmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="apartmentDesc != null" >
+        apartmentDesc = #{apartmentDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where apartmentId = #{apartmentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smarthome.mybatis.po.Apartment" >
+    update apartment
+    set apartmentName = #{apartmentName,jdbcType=VARCHAR},
+      apartmentDesc = #{apartmentDesc,jdbcType=VARCHAR}
+    where apartmentId = #{apartmentId,jdbcType=INTEGER}
+  </update>
+</mapper>

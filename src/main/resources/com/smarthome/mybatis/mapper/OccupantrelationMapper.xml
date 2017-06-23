@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarthome.mybatis.mapper.OccupantrelationMapper" >
+  <resultMap id="BaseResultMap" type="com.smarthome.mybatis.po.Occupantrelation" >
+    <constructor >
+      <idArg column="occupantrelationId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="apartmentId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="relationshio" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    occupantrelationId, userId, apartmentId, relationshio
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from occupantrelation
+    where occupantrelationId = #{occupantrelationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from occupantrelation
+    where occupantrelationId = #{occupantrelationId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.smarthome.mybatis.po.Occupantrelation" >
+    insert into occupantrelation (occupantrelationId, userId, apartmentId, 
+      relationshio)
+    values (#{occupantrelationId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{apartmentId,jdbcType=INTEGER}, 
+      #{relationshio,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smarthome.mybatis.po.Occupantrelation" >
+    insert into occupantrelation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="occupantrelationId != null" >
+        occupantrelationId,
+      </if>
+      <if test="userId != null" >
+        userId,
+      </if>
+      <if test="apartmentId != null" >
+        apartmentId,
+      </if>
+      <if test="relationshio != null" >
+        relationshio,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="occupantrelationId != null" >
+        #{occupantrelationId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="apartmentId != null" >
+        #{apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="relationshio != null" >
+        #{relationshio,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smarthome.mybatis.po.Occupantrelation" >
+    update occupantrelation
+    <set >
+      <if test="userId != null" >
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="apartmentId != null" >
+        apartmentId = #{apartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="relationshio != null" >
+        relationshio = #{relationshio,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where occupantrelationId = #{occupantrelationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smarthome.mybatis.po.Occupantrelation" >
+    update occupantrelation
+    set userId = #{userId,jdbcType=INTEGER},
+      apartmentId = #{apartmentId,jdbcType=INTEGER},
+      relationshio = #{relationshio,jdbcType=VARCHAR}
+    where occupantrelationId = #{occupantrelationId,jdbcType=INTEGER}
+  </update>
+</mapper>
