@@ -2,11 +2,9 @@ package com.smarthome.component.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -15,14 +13,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by radishmaster on 10/04/17.
  * 使用AOP来实现CORS
+ * 并不能实现对PUT和DELETE请求访问
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class CORSAspect {
 
     private final static Logger logger = LoggerFactory.getLogger(CORSAspect.class);
 
-    @Pointcut("execution(public * com.smarthome.component.controller.*.*(..))")
+    @Pointcut("execution(public * com.smarthome.component.controller.*.* (..))")
     public void pointCut() {}
 
     /**
@@ -36,7 +35,7 @@ public class CORSAspect {
         Object result = null;
         try {
             response.setHeader("Access-Control-Allow-Origin", "*");
-            response.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE");
+            response.setHeader("Access-Control-Allow-Methods", "*");
             result = joinPoint.proceed();
         } catch (Throwable throwable) {
             throwable.printStackTrace();

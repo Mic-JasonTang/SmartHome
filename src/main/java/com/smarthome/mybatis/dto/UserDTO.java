@@ -2,8 +2,6 @@ package com.smarthome.mybatis.dto;
 
 import com.smarthome.mybatis.po.User;
 
-import java.util.Date;
-
 public class UserDTO {
     private Integer userId;
 
@@ -13,7 +11,7 @@ public class UserDTO {
 
     private String userSex;
 
-    private Date userBirth;
+    private String userBirth;
 
     private String userEmail;
 
@@ -32,7 +30,7 @@ public class UserDTO {
         this.userIDCard = user.getUserIDCard();
     }
 
-    public UserDTO(Integer userId, String userType, String userName, String userSex, Date userBirth, String userEmail, String userTel, String userIDCard) {
+    public UserDTO(Integer userId, String userType, String userName, String userSex, String userBirth, String userEmail, String userTel, String userIDCard) {
         this.userId = userId;
         this.userType = userType;
         this.userName = userName;
@@ -79,11 +77,11 @@ public class UserDTO {
         this.userSex = userSex == null ? null : userSex.trim();
     }
 
-    public Date getUserBirth() {
+    public String getUserBirth() {
         return userBirth;
     }
 
-    public void setUserBirth(Date userBirth) {
+    public void setUserBirth(String userBirth) {
         this.userBirth = userBirth;
     }
 

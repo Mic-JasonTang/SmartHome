@@ -42,12 +42,16 @@ $(function () {
         common_ajax(form, login_uri, "POST", loginSucFunc, null, null);
     }
 
+    /**
+     * 注册
+     * @param form
+     */
     function reg(form) {
         var regSucFunc = function (responseData) {
             if(responseData.success){
                 swal({
                     title: "Good Job!",
-                    text: responseData.data.msg,
+                    text: "注册成功",
                     timer: 2000,
                     type: "success"
                 });
@@ -67,18 +71,47 @@ $(function () {
         }
         common_ajax(form, reg_uri, "PUT", regSucFunc, null, null);
     }
-    
-    function checkphone() {
-        check_tel_email_uri += "/" + $("#phone").val();
-        common_ajax(form, check_tel_email_uri, "GET", null, null, null);
-    }
-    function checkemail() {
-        check_tel_email_uri += "/" + $("#email").val();
-        common_ajax(form, check_tel_email_uri, "GET", null, null, null);
-    }
+
+    /**
+     * 校验手机号
+     */
+    $("#phone").change(function () {
+        var checkSucFunc = function (responseData) {
+            if(!responseData.success){
+                swal({
+                    title: "Sorry!",
+                    text: responseData.msg,
+                    timer: 2000,
+                    type: "error"
+                });
+            }
+        }
+        var check_tel_uri = check_tel_email_uri + $("#phone").val();
+        common_ajax(null, check_tel_uri, "GET", checkSucFunc, null, null);
+    });
+
+    /**
+     * 校验邮箱
+     */
+    $("#email").change(function () {
+        var checkSucFunc = function (responseData) {
+            if(!responseData.success){
+                swal({
+                    title: "Sorry!",
+                    text: responseData.msg,
+                    timer: 2000,
+                    type: "error"
+                });
+            }
+        }
+        var check_tel_uri = check_tel_email_uri + "/" + $("#email").val();
+        common_ajax(null, check_tel_uri, "GET", checkSucFunc, null, null);
+    });
+
     // 登录
     $("#login-form").Validform({
         tiptype: 3,
+        postonce: true,
         beforeSubmit:function(curform){
             login(curform);
             return false;
@@ -87,9 +120,18 @@ $(function () {
     // 注册
     $("#reg-form").Validform({
         tiptype: 3,
+        postonce: true,
         beforeSubmit:function(curform){
             reg(curform);
             return false;
         },
+    });
+    $("#remember-me").click(function(){
+        var n = document.getElementById("remember-me").checked;
+        if(n){
+            $(".zt").show();
+        }else{
+            $(".zt").hide();
+        }
     });
 })

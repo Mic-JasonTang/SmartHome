@@ -3,20 +3,20 @@ package com.smarthome.mybatis.po;
 import java.util.Date;
 
 public class SensorData {
-    private Integer slId;
+    private Integer sdId;
 
     private Integer sensorId;
 
-    private Integer roomId;
+    private Integer roomOrder;
 
     private Date logtime;
 
     private String sensorValue;
 
-    public SensorData(Integer slId, Integer sensorId, Integer roomId, Date logtime, String sensorValue) {
-        this.slId = slId;
+    public SensorData(Integer sdId, Integer sensorId, Integer roomOrder, Date logtime, String sensorValue) {
+        this.sdId = sdId;
         this.sensorId = sensorId;
-        this.roomId = roomId;
+        this.roomOrder = roomOrder;
         this.logtime = logtime;
         this.sensorValue = sensorValue;
     }
@@ -25,12 +25,12 @@ public class SensorData {
         super();
     }
 
-    public Integer getSlId() {
-        return slId;
+    public Integer getSdId() {
+        return sdId;
     }
 
-    public void setSlId(Integer slId) {
-        this.slId = slId;
+    public void setSdId(Integer sdId) {
+        this.sdId = sdId;
     }
 
     public Integer getSensorId() {
@@ -41,12 +41,12 @@ public class SensorData {
         this.sensorId = sensorId;
     }
 
-    public Integer getRoomId() {
-        return roomId;
+    public Integer getRoomOrder() {
+        return roomOrder;
     }
 
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
+    public void setRoomOrder(Integer roomOrder) {
+        this.roomOrder = roomOrder;
     }
 
     public Date getLogtime() {

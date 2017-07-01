@@ -3,6 +3,7 @@ package com.smarthome.component.service;
 import com.smarthome.common.msgenum.Msg;
 import com.smarthome.common.util.MD5Util;
 import com.smarthome.component.service.api.UserService;
+import com.smarthome.mybatis.dto.ResponseMsg;
 import com.smarthome.mybatis.dto.ServiceResult;
 import com.smarthome.mybatis.dto.UserDTO;
 import com.smarthome.mybatis.mapper.UserMapper;
@@ -39,8 +40,8 @@ public class UserServiceImpl implements UserService{
      * @return
      */
     @Override
-    public ServiceResult<Msg> signup(User user) {
-        ServiceResult<Msg> serviceResult = new ServiceResult<>();
+    public ServiceResult<ResponseMsg> signup(User user) {
+        ServiceResult<ResponseMsg> serviceResult = new ServiceResult<>();
         String newPwd = MD5Util.getPwd(user.getUserPwd());
         user.setUserPwd(newPwd);
         try {
@@ -51,7 +52,7 @@ public class UserServiceImpl implements UserService{
             return serviceResult;
         }
         serviceResult.setSuccess(true);
-        serviceResult.setData(Msg.OK);
+        serviceResult.setData(new ResponseMsg(Msg.OK));
         return serviceResult;
     }
 
@@ -61,8 +62,8 @@ public class UserServiceImpl implements UserService{
      * @return
      */
     @Override
-    public ServiceResult<Msg> login(UserQo userQo) {
-        ServiceResult<Msg> serviceResult = new ServiceResult<>();
+    public ServiceResult<ResponseMsg> login(UserQo userQo) {
+        ServiceResult<ResponseMsg> serviceResult = new ServiceResult<>();
         String username = userQo.getUsername();
         String password = MD5Util.getPwd(userQo.getPassword());
         User user;
@@ -75,12 +76,14 @@ public class UserServiceImpl implements UserService{
         }
         if (user != null) {
             HttpSession session = request.getSession();
+//            log.info("登录时ID:" + session.getId());
             session.setAttribute(session.getId(), new UserDTO(user));
-            if (userQo.getRememberMe()) {
+            if (userQo.getRememberMe() != null && userQo.getRememberMe()) {
+                log.info("用户选择记住密码,有效期为7天");
                 session.setMaxInactiveInterval(3600 * 12 * 7);
             }
             serviceResult.setSuccess(true);
-            serviceResult.setData(Msg.OK);
+            serviceResult.setData(new ResponseMsg(Msg.OK));
         } else {
             serviceResult.setMsg("账号或密码错误");
         }
@@ -92,13 +95,13 @@ public class UserServiceImpl implements UserService{
      * @return
      */
     @Override
-    public ServiceResult<Msg> logout() {
-        ServiceResult<Msg> serviceResult = new ServiceResult<>();
+    public ServiceResult<ResponseMsg> logout() {
+        ServiceResult<ResponseMsg> serviceResult = new ServiceResult<>();
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession session = request.getSession();
         session.removeAttribute(session.getId());
         serviceResult.setSuccess(true);
-        serviceResult.setData(Msg.OK);
+        serviceResult.setData(new ResponseMsg(Msg.OK));
         return serviceResult;
     }
 
@@ -108,15 +111,19 @@ public class UserServiceImpl implements UserService{
      * @return
      */
     @Override
-    public ServiceResult<Msg> update(User user) {
-        ServiceResult<Msg> serviceResult = new ServiceResult<>();
+    public ServiceResult<ResponseMsg> update(User user) {
+        ServiceResult<ResponseMsg> serviceResult = new ServiceResult<>();
         if (user.getUserId() == null) {
             serviceResult.setMsg("用户编号不能为空");
             return serviceResult;
         }
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
         userMapper.updateByPrimaryKeySelective(user);
+        User session_user = userMapper.selectByPrimaryKey(user.getUserId());
+        session.setAttribute(session.getId(), new UserDTO(session_user));
         serviceResult.setSuccess(true);
-        serviceResult.setData(Msg.OK);
+        serviceResult.setData(new ResponseMsg(Msg.OK));
         return serviceResult;
     }
 
@@ -153,8 +160,8 @@ public class UserServiceImpl implements UserService{
      * @return
      */
     @Override
-    public ServiceResult<Msg> check(String tel_email) {
-        ServiceResult<Msg> serviceResult = new ServiceResult<>();
+    public ServiceResult<ResponseMsg> check(String tel_email) {
+        ServiceResult<ResponseMsg> serviceResult = new ServiceResult<>();
         if (StringUtils.isBlank(tel_email)) {
             serviceResult.setMsg("参数错误");
             return serviceResult;
@@ -164,16 +171,15 @@ public class UserServiceImpl implements UserService{
             user = userMapper.selectByTelOrEmail(null, tel_email);
             if (user == null) {
                 serviceResult.setSuccess(true);
-                serviceResult.setData(Msg.OK);
+                serviceResult.setData(new ResponseMsg(Msg.OK));
             } else {
                 serviceResult.setMsg("此邮箱:" + tel_email + ",已被注册");
             }
-        }
-        if (StringUtils.isNotBlank(tel_email)) {
+        } else {
             user = userMapper.selectByTelOrEmail(tel_email, null);
             if (user == null) {
                 serviceResult.setSuccess(true);
-                serviceResult.setData(Msg.OK);
+                serviceResult.setData(new ResponseMsg(Msg.OK));
             } else {
                 serviceResult.setMsg("此号码:" + tel_email + ",已被注册");
             }
@@ -186,6 +192,7 @@ public class UserServiceImpl implements UserService{
         ServiceResult<UserDTO> serviceResult = new ServiceResult<>();
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpSession session = request.getSession();
+//        log.info(session.getId());
         UserDTO userDTO = (UserDTO) session.getAttribute(session.getId());
         if (userDTO == null) {
             serviceResult.setMsg("用户未登录");

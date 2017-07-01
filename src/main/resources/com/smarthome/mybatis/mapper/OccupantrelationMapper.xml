@@ -6,11 +6,12 @@
       <idArg column="occupantrelationId" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="apartmentId" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="relationshio" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="relationship" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="nickName" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    occupantrelationId, userId, apartmentId, relationshio
+    occupantrelationId, userId, apartmentId, relationship, nickName
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,9 +25,9 @@
   </delete>
   <insert id="insert" parameterType="com.smarthome.mybatis.po.Occupantrelation" >
     insert into occupantrelation (occupantrelationId, userId, apartmentId, 
-      relationshio)
+      relationship, nickName)
     values (#{occupantrelationId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{apartmentId,jdbcType=INTEGER}, 
-      #{relationshio,jdbcType=VARCHAR})
+      #{relationship,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.smarthome.mybatis.po.Occupantrelation" >
     insert into occupantrelation
@@ -40,8 +41,11 @@
       <if test="apartmentId != null" >
         apartmentId,
       </if>
-      <if test="relationshio != null" >
-        relationshio,
+      <if test="relationship != null" >
+        relationship,
+      </if>
+      <if test="nickName != null" >
+        nickName,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -54,8 +58,11 @@
       <if test="apartmentId != null" >
         #{apartmentId,jdbcType=INTEGER},
       </if>
-      <if test="relationshio != null" >
-        #{relationshio,jdbcType=VARCHAR},
+      <if test="relationship != null" >
+        #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -68,8 +75,11 @@
       <if test="apartmentId != null" >
         apartmentId = #{apartmentId,jdbcType=INTEGER},
       </if>
-      <if test="relationshio != null" >
-        relationshio = #{relationshio,jdbcType=VARCHAR},
+      <if test="relationship != null" >
+        relationship = #{relationship,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nickName = #{nickName,jdbcType=VARCHAR},
       </if>
     </set>
     where occupantrelationId = #{occupantrelationId,jdbcType=INTEGER}
@@ -78,7 +88,8 @@
     update occupantrelation
     set userId = #{userId,jdbcType=INTEGER},
       apartmentId = #{apartmentId,jdbcType=INTEGER},
-      relationshio = #{relationshio,jdbcType=VARCHAR}
+      relationship = #{relationship,jdbcType=VARCHAR},
+      nickName = #{nickName,jdbcType=VARCHAR}
     where occupantrelationId = #{occupantrelationId,jdbcType=INTEGER}
   </update>
 </mapper>

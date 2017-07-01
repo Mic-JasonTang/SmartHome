@@ -70,4 +70,11 @@
       userId = #{userId,jdbcType=INTEGER}
     where auId = #{auId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByUserId" resultType="com.smarthome.mybatis.po.ApartmentUser" >
+    SELECT
+    <include refid="Base_Column_List" />
+    from apartment_user
+    where  userId = #{userId,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smarthome.mybatis.mapper.BuildingApartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.smarthome.mybatis.po.BuildingApartment" >
+    <constructor >
+      <idArg column="baId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="buildingId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="apartmentId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    baId, buildingId, apartmentId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from building_apartment
+    where baId = #{baId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from building_apartment
+    where baId = #{baId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.smarthome.mybatis.po.BuildingApartment" >
+    insert into building_apartment (baId, buildingId, apartmentId
+      )
+    values (#{baId,jdbcType=INTEGER}, #{buildingId,jdbcType=INTEGER}, #{apartmentId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.smarthome.mybatis.po.BuildingApartment" >
+    insert into building_apartment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="baId != null" >
+        baId,
+      </if>
+      <if test="buildingId != null" >
+        buildingId,
+      </if>
+      <if test="apartmentId != null" >
+        apartmentId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="baId != null" >
+        #{baId,jdbcType=INTEGER},
+      </if>
+      <if test="buildingId != null" >
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="apartmentId != null" >
+        #{apartmentId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smarthome.mybatis.po.BuildingApartment" >
+    update building_apartment
+    <set >
+      <if test="buildingId != null" >
+        buildingId = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="apartmentId != null" >
+        apartmentId = #{apartmentId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where baId = #{baId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smarthome.mybatis.po.BuildingApartment" >
+    update building_apartment
+    set buildingId = #{buildingId,jdbcType=INTEGER},
+      apartmentId = #{apartmentId,jdbcType=INTEGER}
+    where baId = #{baId,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectByAparamentId" resultType="com.smarthome.mybatis.po.BuildingApartment" >
+    select
+    <include refid="Base_Column_List" />
+    from building_apartment
+    where apartmentId = #{apartmentId,jdbcType=INTEGER}
+  </select>
+</mapper>

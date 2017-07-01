@@ -1,6 +1,6 @@
 package com.smarthome.component.service.api;
 
-import com.smarthome.common.msgenum.Msg;
+import com.smarthome.mybatis.dto.ResponseMsg;
 import com.smarthome.mybatis.dto.ServiceResult;
 import com.smarthome.mybatis.dto.UserDTO;
 import com.smarthome.mybatis.po.User;
@@ -18,27 +18,27 @@ public interface UserService {
      *
      * @return
      */
-    public ServiceResult<Msg> signup(User user);
+    public ServiceResult<ResponseMsg> signup(User user);
 
     /**
      * 登录
      * @param userQo
      * @return
      */
-    public ServiceResult<Msg> login(UserQo userQo);
+    public ServiceResult<ResponseMsg> login(UserQo userQo);
 
     /**
      * 注销
      * @return
      */
-    public ServiceResult<Msg> logout();
+    public ServiceResult<ResponseMsg> logout();
 
     /**
      * 修改信息
      * @param user
      * @return
      */
-    public ServiceResult<Msg> update(User user);
+    public ServiceResult<ResponseMsg> update(User user);
 
     /**
      * 获取用户信息
@@ -52,7 +52,7 @@ public interface UserService {
      * @param tel_email
      * @return
      */
-    public ServiceResult<Msg> check(String tel_email);
+    public ServiceResult<ResponseMsg> check(String tel_email);
 
     /**
      * 获取已登录用户

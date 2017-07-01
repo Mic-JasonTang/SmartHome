@@ -14,14 +14,7 @@
 .switch_tab1{background:url(../images/switch_tab.png) no-repeat; width:16px; height:17px;}
 .switch_tab2{background:url(../images/switch_tab.png) no-repeat -44px 0px; width:16px; height:17px;}*/
 .first_screen{height:440px;}
-.weather{
-	position: absolute;
-	background: url(../images/weather_bg.png) no-repeat;
-	width: 251px;
-	height:150px;
-	right:0px;
-	top:10px;
-}
+
 .today{margin:5px 5px 10px 5px;}
 .today img{float:left;}
 .today span{ margin-left:15px; width:80px; height:60px; font-size:30px; font-family:"黑体"; color:#fff; line-height:60px;}

@@ -8,7 +8,7 @@
       <arg column="userName" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="userPwd" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="userSex" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="userBirth" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="userBirth" jdbcType="DATE" javaType="java.lang.String" />
       <arg column="userEmail" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="userTel" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="userIDCard" jdbcType="VARCHAR" javaType="java.lang.String" />

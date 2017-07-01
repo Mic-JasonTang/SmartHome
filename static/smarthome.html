@@ -2,107 +2,23 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link href="css/ace.min.css" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="css/hightcharts/highcharts.css"/>
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <script src="js/bootstrap-switch/bootstrap-switch.min.js"></script>
-    <script type="text/javascript" src="js/hightcharts/highcharts.js"></script>
-    <script type="text/javascript" src="js/hightcharts/exporting.js"></script>
-    <script type="text/javascript" src="js/hightcharts/highcharts-zh_CN.js"></script>
-    <script type="application/javascript">
-        $(function () {
-            $("#door").bootstrapSwitch({
-                onText: "开门",
-                offText: "关门",
-                onColor: "success",
-                offColor: "danger",
-                size: "small",
-                onSwitchChange: function (event, state) {
-                    if (state == true) {
-                        $(this).val("1");
-                    } else {
-                        $(this).val("2");
-                    }
-                }
-            });
-            $("#yanwu").bootstrapSwitch({
-                onText: "启动",
-                offText: "停止",
-                onColor: "success",
-                offColor: "danger",
-                size: "small",
-                onSwitchChange: function (event, state) {
-                    if (state == true) {
-                        $(this).val("1");
-                    } else {
-                        $(this).val("2");
-                    }
-                }
-            });
-            $("#keting").bootstrapSwitch({
-                onText: "开灯",
-                offText: "关灯",
-                onColor: "success",
-                offColor: "info",
-                size: "small",
-                onSwitchChange: function (event, state) {
-                    if (state == true) {
-                        $(this).val("1");
-                    } else {
-                        $(this).val("2");
-                    }
-                }
-            });
-            $("#zhuwo").bootstrapSwitch({
-                onText: "开灯",
-                offText: "关灯",
-                onColor: "success",
-                offColor: "info",
-                size: "small",
-                onSwitchChange: function (event, state) {
-                    if (state == true) {
-                        $(this).val("1");
-                    } else {
-                        $(this).val("2");
-                    }
-                }
-            });
-            $("#ciwo").bootstrapSwitch({
-                onText: "开灯",
-                offText: "关灯",
-                onColor: "success",
-                offColor: "info",
-                size: "small",
-                onSwitchChange: function (event, state) {
-                    if (state == true) {
-                        $(this).val("1");
-                    } else {
-                        $(this).val("2");
-                    }
-                }
-            });
-            $("#kitchen").bootstrapSwitch({
-                onText: "开灯",
-                offText: "关灯",
-                onColor: "success",
-                offColor: "info",
-                size: "small",
-                onSwitchChange: function (event, state) {
-                    if (state == true) {
-                        $(this).val("1");
-                    } else {
-                        $(this).val("2");
-                    }
-                }
-            });
-        });
-    </script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="css/ace.min.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="css/hightcharts/highcharts.css"/>
+<link href="css/page.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="js/sweetalert-1.1.1/sweetalert.css">
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
+<script src="js/bootstrap-switch/bootstrap-switch.min.js"></script>
+<script type="text/javascript" src="js/hightcharts/highcharts.js"></script>
+<script type="text/javascript" src="js/hightcharts/exporting.js"></script>
+<script type="text/javascript" src="js/hightcharts/highcharts-zh_CN.js"></script>
+<script src='js/sweetalert-1.1.1/sweetalert.min.js' type="text/javascript"></script>
+<script src="js/business/base.js" type="text/javascript"></script>
+<script src="js/business/smarthome.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="hr hr32 hr-dotted"></div>
@@ -149,7 +65,7 @@
                     </div>
                     <div class="controll">
                         <div class="switch">
-                            <input id="yanwu" type="checkbox" checked/>
+                            <input id="yanwu" type="checkbox" checked disabled/>
                         </div>
                     </div>
                 </div>
@@ -185,12 +101,12 @@
         </div>
         <div class="space-6"></div>
         <div class="blank">
-            <div class="alert alert-success">
+            <div class="alert alert-success" id="tip" style="display: none">
                 <button type="button" class="close" data-dismiss="alert">
                     <i class="icon-remove"></i>
                 </button>
-                <strong id="result">Good Job!</strong>
-                <span>客厅的灯开启成功！</span>
+                <strong id="target"></strong>
+                <span id="status"></span>
                 <br>
             </div>
         </div>

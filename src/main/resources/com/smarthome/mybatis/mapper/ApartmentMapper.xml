@@ -4,12 +4,13 @@
   <resultMap id="BaseResultMap" type="com.smarthome.mybatis.po.Apartment" >
     <constructor >
       <idArg column="apartmentId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="apartmentNo" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="apartmentName" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="apartmentDesc" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    apartmentId, apartmentName, apartmentDesc
+    apartmentId, apartmentNo, apartmentName, apartmentDesc
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -22,16 +23,19 @@
     where apartmentId = #{apartmentId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.smarthome.mybatis.po.Apartment" >
-    insert into apartment (apartmentId, apartmentName, apartmentDesc
-      )
-    values (#{apartmentId,jdbcType=INTEGER}, #{apartmentName,jdbcType=VARCHAR}, #{apartmentDesc,jdbcType=VARCHAR}
-      )
+    insert into apartment (apartmentId, apartmentNo, apartmentName, 
+      apartmentDesc)
+    values (#{apartmentId,jdbcType=INTEGER}, #{apartmentNo,jdbcType=INTEGER}, #{apartmentName,jdbcType=VARCHAR}, 
+      #{apartmentDesc,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.smarthome.mybatis.po.Apartment" >
     insert into apartment
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="apartmentId != null" >
         apartmentId,
+      </if>
+      <if test="apartmentNo != null" >
+        apartmentNo,
       </if>
       <if test="apartmentName != null" >
         apartmentName,
@@ -44,6 +48,9 @@
       <if test="apartmentId != null" >
         #{apartmentId,jdbcType=INTEGER},
       </if>
+      <if test="apartmentNo != null" >
+        #{apartmentNo,jdbcType=INTEGER},
+      </if>
       <if test="apartmentName != null" >
         #{apartmentName,jdbcType=VARCHAR},
       </if>
@@ -55,6 +62,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.smarthome.mybatis.po.Apartment" >
     update apartment
     <set >
+      <if test="apartmentNo != null" >
+        apartmentNo = #{apartmentNo,jdbcType=INTEGER},
+      </if>
       <if test="apartmentName != null" >
         apartmentName = #{apartmentName,jdbcType=VARCHAR},
       </if>
@@ -66,7 +76,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.smarthome.mybatis.po.Apartment" >
     update apartment
-    set apartmentName = #{apartmentName,jdbcType=VARCHAR},
+    set apartmentNo = #{apartmentNo,jdbcType=INTEGER},
+      apartmentName = #{apartmentName,jdbcType=VARCHAR},
       apartmentDesc = #{apartmentDesc,jdbcType=VARCHAR}
     where apartmentId = #{apartmentId,jdbcType=INTEGER}
   </update>

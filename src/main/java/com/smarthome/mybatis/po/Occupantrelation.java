@@ -7,13 +7,16 @@ public class Occupantrelation {
 
     private Integer apartmentId;
 
-    private String relationshio;
+    private String relationship;
 
-    public Occupantrelation(Integer occupantrelationId, Integer userId, Integer apartmentId, String relationshio) {
+    private String nickName;
+
+    public Occupantrelation(Integer occupantrelationId, Integer userId, Integer apartmentId, String relationship, String nickName) {
         this.occupantrelationId = occupantrelationId;
         this.userId = userId;
         this.apartmentId = apartmentId;
-        this.relationshio = relationshio;
+        this.relationship = relationship;
+        this.nickName = nickName;
     }
 
     public Occupantrelation() {
@@ -44,11 +47,19 @@ public class Occupantrelation {
         this.apartmentId = apartmentId;
     }
 
-    public String getRelationshio() {
-        return relationshio;
+    public String getRelationship() {
+        return relationship;
     }
 
-    public void setRelationshio(String relationshio) {
-        this.relationshio = relationshio == null ? null : relationshio.trim();
+    public void setRelationship(String relationship) {
+        this.relationship = relationship == null ? null : relationship.trim();
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName == null ? null : nickName.trim();
     }
 }

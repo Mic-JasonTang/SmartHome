@@ -803,7 +803,7 @@
             next: ["\u540E\u4E00\u4E2A", "<img   src=\"js/kandtabs/resultset_next.png\" width=\"16\" height=\"16\"/>"],
             last: ["\u5DF2\u662F\u672B\u4E2A", "<img   src=\"js/kandtabs/resultset_next.png\" width=\"16\" height=\"16\"/>"],
             add: ["\u65b0\u589e\u9009\u9879", "+"],
-            del: ["\u5220\u9664\u9009\u9879", "<span><img onmouseover=\"this.src='js/kandtabs/00.png'\" onmouseout=\"this.src='js/kandtabs/01.png'\"  src=\"js/kandtabs/01.png\" width=\"16\" height=\"16\"/></span>"],
+            del: ["\u5173\u95ed", "<span><img onmouseover=\"this.src='js/kandtabs/00.png'\" onmouseout=\"this.src='js/kandtabs/01.png'\"  src=\"js/kandtabs/01.png\" width=\"16\" height=\"16\"/></span>"],
             play: ["\u64AD\u653E", "&gt;&gt;"],
             pause: ["\u6682\u505C", "&#124; &#124;"],
             btn: "\u65b0\u9009\u9879",

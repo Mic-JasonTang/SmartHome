@@ -3,43 +3,43 @@
 <mapper namespace="com.smarthome.mybatis.mapper.SensorDataMapper" >
   <resultMap id="BaseResultMap" type="com.smarthome.mybatis.po.SensorData" >
     <constructor >
-      <idArg column="slId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <idArg column="sdId" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="sensorId" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="roomId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="roomOrder" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="logtime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="sensorValue" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    slId, sensorId, roomId, logtime, sensorValue
+    sdId, sensorId, roomOrder, logtime, sensorValue
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from sensor_data
-    where slId = #{slId,jdbcType=INTEGER}
+    where sdId = #{sdId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sensor_data
-    where slId = #{slId,jdbcType=INTEGER}
+    where sdId = #{sdId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.smarthome.mybatis.po.SensorData" >
-    insert into sensor_data (slId, sensorId, roomId, 
+    insert into sensor_data (sdId, sensorId, roomOrder, 
       logtime, sensorValue)
-    values (#{slId,jdbcType=INTEGER}, #{sensorId,jdbcType=INTEGER}, #{roomId,jdbcType=INTEGER}, 
+    values (#{sdId,jdbcType=INTEGER}, #{sensorId,jdbcType=INTEGER}, #{roomOrder,jdbcType=INTEGER}, 
       #{logtime,jdbcType=TIMESTAMP}, #{sensorValue,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.smarthome.mybatis.po.SensorData" >
     insert into sensor_data
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="slId != null" >
-        slId,
+      <if test="sdId != null" >
+        sdId,
       </if>
       <if test="sensorId != null" >
         sensorId,
       </if>
-      <if test="roomId != null" >
-        roomId,
+      <if test="roomOrder != null" >
+        roomOrder,
       </if>
       <if test="logtime != null" >
         logtime,
@@ -49,14 +49,14 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="slId != null" >
-        #{slId,jdbcType=INTEGER},
+      <if test="sdId != null" >
+        #{sdId,jdbcType=INTEGER},
       </if>
       <if test="sensorId != null" >
         #{sensorId,jdbcType=INTEGER},
       </if>
-      <if test="roomId != null" >
-        #{roomId,jdbcType=INTEGER},
+      <if test="roomOrder != null" >
+        #{roomOrder,jdbcType=INTEGER},
       </if>
       <if test="logtime != null" >
         #{logtime,jdbcType=TIMESTAMP},
@@ -72,8 +72,8 @@
       <if test="sensorId != null" >
         sensorId = #{sensorId,jdbcType=INTEGER},
       </if>
-      <if test="roomId != null" >
-        roomId = #{roomId,jdbcType=INTEGER},
+      <if test="roomOrder != null" >
+        roomOrder = #{roomOrder,jdbcType=INTEGER},
       </if>
       <if test="logtime != null" >
         logtime = #{logtime,jdbcType=TIMESTAMP},
@@ -82,14 +82,21 @@
         sensorValue = #{sensorValue,jdbcType=VARCHAR},
       </if>
     </set>
-    where slId = #{slId,jdbcType=INTEGER}
+    where sdId = #{sdId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.smarthome.mybatis.po.SensorData" >
     update sensor_data
     set sensorId = #{sensorId,jdbcType=INTEGER},
-      roomId = #{roomId,jdbcType=INTEGER},
+      roomOrder = #{roomOrder,jdbcType=INTEGER},
       logtime = #{logtime,jdbcType=TIMESTAMP},
       sensorValue = #{sensorValue,jdbcType=VARCHAR}
-    where slId = #{slId,jdbcType=INTEGER}
+    where sdId = #{sdId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectListBySensorId" resultType="com.smarthome.mybatis.po.SensorData" >
+    select
+    <include refid="Base_Column_List" />
+    from sensor_data
+    where sensorId = #{sensorId,jdbcType=INTEGER} order by logtime DESC limit 0, #{length}
+  </select>
 </mapper>

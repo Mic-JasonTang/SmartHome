@@ -13,7 +13,7 @@ public class User {
 
     private String userSex;
 
-    private Date userBirth;
+    private String userBirth;
 
     private String userEmail;
 
@@ -23,7 +23,7 @@ public class User {
 
     private Date userdatetime;
 
-    public User(Integer userId, String userType, String userName, String userPwd, String userSex, Date userBirth, String userEmail, String userTel, String userIDCard, Date userdatetime) {
+    public User(Integer userId, String userType, String userName, String userPwd, String userSex, String userBirth, String userEmail, String userTel, String userIDCard, Date userdatetime) {
         this.userId = userId;
         this.userType = userType;
         this.userName = userName;
@@ -80,11 +80,11 @@ public class User {
         this.userSex = userSex == null ? null : userSex.trim();
     }
 
-    public Date getUserBirth() {
+    public String getUserBirth() {
         return userBirth;
     }
 
-    public void setUserBirth(Date userBirth) {
+    public void setUserBirth(String userBirth) {
         this.userBirth = userBirth;
     }
 

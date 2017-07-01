@@ -7,7 +7,7 @@ package com.smarthome.common.msgenum;
  */
 public enum Msg {
 
-    OK("ok");
+    OK("ok"), YES("y"), NO("n");
 
     private String msg;
 

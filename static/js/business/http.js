@@ -41,7 +41,7 @@ jQuery(function ($) {
                 }
             }
 
-            return form.appendTo('body');
+            return form.appendTo("body");
         }
     });
 });

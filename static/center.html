@@ -6,42 +6,33 @@
 <link rel="stylesheet" href="css/global.css" type="text/css"/>
 <link rel="stylesheet" href="css/index.css" type="text/css"/>
 <link rel="stylesheet" href="css/menu.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="js/sweetalert-1.1.1/sweetalert.css">
+<link rel="stylesheet" href="css/style.css" type="text/css"/>
+<link rel="stylesheet" href="js/kandtabs/kandytabs.css" type="text/css" />
+<link href="css/center.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
 <script src="js/cfcoda.js" language="javascript"></script>
 <script src="js/time.js" language="javascript"></script>
 <script type="text/javascript" src="js/kandtabs/kandytabs.pack.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
-<link rel="stylesheet" href="js/kandtabs/kandytabs.css" type="text/css" />
 <script src="js/autoheight.js" type="text/javascript"></script>
-<!--[if lt IE 7]>       
+<script src='js/sweetalert-1.1.1/sweetalert.min.js' type="text/javascript"></script>
+<script src="js/business/base.js" type="text/javascript"></script>
+<script src="js/business/center.js" type="text/javascript"></script>
+<!--[if lt IE 7]>
  <script src="js/fixPNG.js"></script>         
  <script>
  DD_belatedPNG.fix('img,.nav ul li a,.nav ul li a:hover');
  </script>     
 <![endif]-->
-<link href="css/lanrenzhijia.css" rel="stylesheet" type="text/css" />
 </head>
 <script type="text/javascript">
-    var tab,index=0;
-    $(function() {
-        tab=$(".main_desktop").KandyTabs({
-            del:true,
-            scroll:true,
-            trigger:'click',
-            custom:function(b,c,i){
-                $("p",c).fadeOut();
-                c.eq(i).find("p").slideDown(1500);
-                index=i;
-            }
-        });
-    });
+
 </script>
 <body >
 <!-- content -->
 <div  style="position:relative;">
-  
-  
-     
+
    <div id="frame">
    <div id="scroller">
     <div id="content">
@@ -67,13 +58,13 @@
         <a href="#" onclick="parent.addTab('personal.html','信息维护');"><img src="images/icon_19.png"/></a></li>
        <li>
         <p>GPS定位</p>
-        <a href="#" onclick="parent.addTab('gps.html','GPS定位')"><img src="images/icon_6.png"/></a></li>
+        <a href="#" id="gps_a" ><img src="images/icon_6.png"/></a></li>
        <li>
         <p>视频监控</p>
-        <a href="#" onclick="parent.addTab('vedio.html','视频监控')"><img src="images/icon_22.png"/></a></li>
+        <a href="#" id="vedio_a" ><img src="images/icon_22.png"/></a></li>
        <li>
         <p>医疗保障</p>
-        <a href="#" onclick="parent.addTab('heart-rate.html','医疗保障')"><img src="images/icon_17.png"  /></a></li>
+        <a href="#" id="heartrate_a" ><img src="images/icon_17.png"/></a></li>
        <li>
         <p>智能家居</p>
         <a href="#" onclick="parent.addTab('smarthome.html','智能家居')"><img src="images/icon_38.png"/></a></li>

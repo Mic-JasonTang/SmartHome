@@ -10,4 +10,5 @@ $(function () {
        src: "地图调用API"
    };
    $.form(url, data, 'get').submit();
+   
 });

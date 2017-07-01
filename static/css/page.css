@@ -1,0 +1,66 @@
+@charset "utf-8";
+/* CSS Document */
+/*content*/
+.center{text-align:center; font-weight:bold;}
+.tab a{color:#fff;}
+.content_box{margin:0px 10px 10px 10px;}
+.current{height:40px; line-height:40px; font-size:14px;}
+.current span{margin:0px 5px;}
+.infolist table{border-top:1px solid #c8c8c8;border-left:1px solid #c8c8c8;}
+.infolist table tr td{border-bottom:1px solid #c8c8c8;border-right:1px solid #c8c8c8;}
+.title{height:40px; background:#efefef;}
+.title h4{font-size:14px; margin-left:10px; line-height:40px; float:left;}
+.review{margin:4px; float:right;}
+.zsgc li{background:url(../images/zsgc_bg.png) no-repeat; float:left; display:inline; width:45px; height:26px; text-align:center; line-height:26px; margin-left:10px;}
+.zsgc li a{display:block;}
+.list_date{margin-right:10px;}
+.select{height:26px; line-height:26px; width:100px;}
+.name{text-decoration:underline;}
+.page{line-height:40px;}
+.page li{float:left; display:inline; margin:0px 10px;}
+.page_numble{width:40px; height:18px; margin:0px 5px;}
+.go{background:url(../images/go.png) no-repeat; width:29px; height:25px; border:none; cursor:pointer;}
+
+/*CSS Digg style pagination*/
+.xx_page{float:right;}
+DIV.digg {padding:3px;text-align:center;}
+DIV.digg a {border:#cdcdcd 1px solid; height:24px; line-height:24px; padding:0px 8px; margin:2px; color:#333;  text-decoration:none; display:block; float:left;}
+DIV.digg a:hover {border:#004e98 1px solid; color:#fff;background:#00a0ea;}
+DIV.digg a:active {border:#004e98 1px solid; color:#fff; background:#00a0ea;}
+DIV.digg span.current_page {border:#004e98 1px solid; height:24px; line-height:24px; padding:0px 8px; font-weight:bold; margin:2px; color:#fff; background-color:#00a0ea; display:block; float:left;}
+DIV.digg span.disabled {border:#eee 1px solid; margin:2px; color:#ddd;  height:24px; line-height:24px; padding:0px 8px; display:block; float:left;}
+
+/* smarthome */
+.controll {
+    display: inline-block;
+    position: absolute;
+    right: 9px;
+    top: 16px;
+}
+.controll-lable {
+    display: inline-block;
+    border: 0;
+    border-top-width: 0;
+    font-size: 17px;
+    text-align: left;
+    line-height: 21px;
+    min-width: 130px;
+    padding-left: 5px;
+    position: relative;
+    top: 12px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
+}
+.controll-num {
+    display: block;
+    font-size:17px;
+    margin: -14px 0 4px;
+    position: relative;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.15);
+}
+.row {
+    margin-right: 2px;
+    margin-left: 2px;
+}
+.blank {
+    height: 210px;
+}

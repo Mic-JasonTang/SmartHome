@@ -14,4 +14,11 @@ public interface ApartmentUserMapper {
     int updateByPrimaryKeySelective(ApartmentUser record);
 
     int updateByPrimaryKey(ApartmentUser record);
+
+    /**
+     * 根据userId查询公寓
+     * @param userId
+     * @return
+     */
+    ApartmentUser selectByUserId(int userId);
 }

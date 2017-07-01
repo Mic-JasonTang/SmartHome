@@ -1,7 +1,7 @@
 package com.smarthome.component.controller;
 
-import com.smarthome.common.msgenum.Msg;
 import com.smarthome.component.service.api.UserService;
+import com.smarthome.mybatis.dto.ResponseMsg;
 import com.smarthome.mybatis.dto.ServiceResult;
 import com.smarthome.mybatis.dto.UserDTO;
 import com.smarthome.mybatis.po.User;
@@ -36,8 +36,8 @@ public class UserController {
      * @return
      */
     @ApiIgnore
-    @RequestMapping(value = "", method = RequestMethod.PUT)
-    public ServiceResult<Msg> signup(User user) {
+    @RequestMapping(value = "signup", method = RequestMethod.PUT)
+    public ServiceResult<ResponseMsg> signup(User user) {
 
         return userService.signup(user);
     }
@@ -54,7 +54,7 @@ public class UserController {
             @ApiImplicitParam(name = "rememberMe", value = "7天免登陆", required = true, dataType = "boolean")
     })
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ServiceResult<Msg> login(UserQo userQo) {
+    public ServiceResult<ResponseMsg> login(UserQo userQo) {
 
         return userService.login(userQo);
     }
@@ -65,7 +65,7 @@ public class UserController {
      */
     @ApiOperation("用户注销")
     @RequestMapping(value = "", method = RequestMethod.DELETE)
-    public ServiceResult<Msg> logout() {
+    public ServiceResult<ResponseMsg> logout() {
 
         return userService.logout();
     }
@@ -89,7 +89,7 @@ public class UserController {
             @ApiImplicitParam(name = "userdatetime", value = "创建时间,不允许修改")
     })
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ServiceResult<Msg> update(User user) {
+    public ServiceResult<ResponseMsg> update(User user) {
 
         return userService.update(user);
     }
@@ -114,8 +114,9 @@ public class UserController {
      */
     @ApiOperation("校验电话号码或者邮箱是否存在")
     @ApiImplicitParam(paramType = "path", name = "tel_email", value = "邮箱或者手机号", dataType = "String")
-    @RequestMapping(value = "/check/{tel_email}", method = RequestMethod.GET)
-    public ServiceResult<Msg> check(@PathVariable("tel_email") String tel_email) {
+    // 使用SpringEl表达式来解决PathVariable参数中有.的问题
+    @RequestMapping(value = "/check/{tel_email:.+}", method = RequestMethod.GET)
+    public ServiceResult<ResponseMsg> check(@PathVariable("tel_email") String tel_email) {
 
         return userService.check(tel_email);
     }
