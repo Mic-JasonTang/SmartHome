@@ -1,6 +1,7 @@
 package com.smarthome.component.service.api;
 
 import com.smarthome.common.msgenum.Msg;
+import com.smarthome.mybatis.dto.ChartData;
 import com.smarthome.mybatis.dto.ResponseMsg;
 import com.smarthome.mybatis.dto.SensorDataDTO;
 import com.smarthome.mybatis.dto.ServiceResult;
@@ -37,7 +38,7 @@ public interface SmartHomeService {
      *                    1 表示温度  2 表示 湿度
      * @return
      */
-    public ServiceResult<List<SensorDataDTO>> getDataList(int temp_or_hum);
+    public ServiceResult<List<ChartData>> getDataList(int temp_or_hum);
 
     /**
      * 检测是否有烟雾

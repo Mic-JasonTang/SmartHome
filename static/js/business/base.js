@@ -28,6 +28,8 @@ var update_uri = "/user"
 
 var openOrCloseDoor_uri = "/smarthome/openOrClose";
 var detect_uri = "/smarthome/detect";
+var getLastestData_uri = "/smarthome/get";
+var getListData_uri = "/smarthome/list";
 /**
  * 通用的Ajax
  * @param form 表单对象

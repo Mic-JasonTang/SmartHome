@@ -20,7 +20,7 @@ $(function () {
             swal({
                 title: "Sorry!",
                 text: responseData.msg,
-                timer: 2000,
+                timer: 1300,
                 type: "error"
             }, function () {
                 window.location.href = "login.html";

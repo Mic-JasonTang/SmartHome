@@ -2,6 +2,7 @@ package com.smarthome.component.controller;
 
 import com.smarthome.common.msgenum.Msg;
 import com.smarthome.component.service.api.SmartHomeService;
+import com.smarthome.mybatis.dto.ChartData;
 import com.smarthome.mybatis.dto.ResponseMsg;
 import com.smarthome.mybatis.dto.SensorDataDTO;
 import com.smarthome.mybatis.dto.ServiceResult;
@@ -63,7 +64,7 @@ public class SmartHomeController {
     @ApiOperation("获取最新温度湿度图表数据")
     @ApiImplicitParam(name = "temp_or_hum", value = "1表示温度,2表示湿度", required = true, dataType = "int")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ServiceResult<List<SensorDataDTO>> getDataList(int temp_or_hum) {
+    public ServiceResult<List<ChartData>> getDataList(int temp_or_hum) {
 
         return smartHomeService.getDataList(temp_or_hum);
     }

@@ -6,10 +6,7 @@ import com.smarthome.common.util.TimeUtil;
 import com.smarthome.component.service.api.SmartHomeService;
 import com.smarthome.component.service.api.UserService;
 import com.smarthome.config.SensorConfig;
-import com.smarthome.mybatis.dto.ResponseMsg;
-import com.smarthome.mybatis.dto.SensorDataDTO;
-import com.smarthome.mybatis.dto.ServiceResult;
-import com.smarthome.mybatis.dto.UserDTO;
+import com.smarthome.mybatis.dto.*;
 import com.smarthome.mybatis.mapper.*;
 import com.smarthome.mybatis.po.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,7 +146,7 @@ public class SmartHomeServiceImpl implements SmartHomeService{
             serviceResult.setMsg(userDTOServiceResult.getMsg());
             return serviceResult;
         }
-        if (temp_or_hum != 1 && temp_or_hum != 0) {
+        if (temp_or_hum != 1 && temp_or_hum != 2) {
             serviceResult.setMsg("参数错误");
             return serviceResult;
         }
@@ -187,15 +184,15 @@ public class SmartHomeServiceImpl implements SmartHomeService{
      * @return
      */
     @Override
-    public ServiceResult<List<SensorDataDTO>> getDataList(int temp_or_hum) {
-        ServiceResult<List<SensorDataDTO>> serviceResult = new ServiceResult<>();
+    public ServiceResult<List<ChartData>> getDataList(int temp_or_hum) {
+        ServiceResult<List<ChartData>> serviceResult = new ServiceResult<>();
         ServiceResult<UserDTO> userDTOServiceResult = userService.getLoginedUser();
         // 如果请求没有成功,表示没有登录
         if (!userDTOServiceResult.getSuccess()) {
             serviceResult.setMsg(userDTOServiceResult.getMsg());
             return serviceResult;
         }
-        if (temp_or_hum != 1 && temp_or_hum != 0) {
+        if (temp_or_hum != 1 && temp_or_hum != 2) {
             serviceResult.setMsg("参数错误");
             return serviceResult;
         }
@@ -212,13 +209,12 @@ public class SmartHomeServiceImpl implements SmartHomeService{
             serviceResult.setMsg("没有找到记录");
             return serviceResult;
         }
-        List<SensorDataDTO> sensorDataDTOList = new ArrayList<>(20);
+        List<ChartData> chartDataList = new ArrayList<>(20);
         for (SensorData sensorData : sensorDataList) {
-            SensorDataDTO sensorDataDTO = new SensorDataDTO(Integer.parseInt(sensorData.getSensorValue()), 0,
-                 TimeUtil.formatTime(sensorData.getLogtime()));
-            sensorDataDTOList.add(sensorDataDTO);
+            ChartData chartData = new ChartData(TimeUtil.formatTime(sensorData.getLogtime()), Integer.parseInt(sensorData.getSensorValue()));
+            chartDataList.add(chartData);
         }
-        serviceResult.setData(sensorDataDTOList);
+        serviceResult.setData(chartDataList);
         serviceResult.setSuccess(true);
         return serviceResult;
     }

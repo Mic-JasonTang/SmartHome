@@ -3,6 +3,7 @@ package com.smarthome.component.service;
 import com.smarthome.common.msgenum.Msg;
 import com.smarthome.component.service.api.SmartHomeService;
 import com.smarthome.component.service.api.UserService;
+import com.smarthome.mybatis.dto.ChartData;
 import com.smarthome.mybatis.dto.ResponseMsg;
 import com.smarthome.mybatis.dto.SensorDataDTO;
 import com.smarthome.mybatis.dto.ServiceResult;
@@ -52,7 +53,7 @@ public class SmartHomeServiceImplTest {
     @Test
     public void getDataList() throws Exception {
 
-        ServiceResult<List<SensorDataDTO>> serviceResult = smartHomeService.getDataList(2);
+        ServiceResult<List<ChartData>> serviceResult = smartHomeService.getDataList(2);
         System.out.println(serviceResult);
     }
 
