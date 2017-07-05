@@ -108,7 +108,7 @@ function getHeartRateList(data) {
             if (isConfirm) {
                 var $userId = $("#userId").val();
                 if(($userId != null && $userId != '')) {
-                    parent.addTab('heart-rate.html','视频监控');
+                    parent.addTab('heart-rate.html','医疗保障');
                     swal.close();
                 } else {
                     swal.showInputError("请选择");
@@ -144,7 +144,7 @@ function getVedioList(data) {
             if (isConfirm) {
                 var $num = $("#num").val();
                 if(($num != null && $num != '')) {
-                    parent.addTab('vedio.html','医疗保障');
+                    parent.addTab('vedio.html','视频监控');
                     swal.close();
                 } else {
                     swal.showInputError("请选择");

@@ -97,23 +97,26 @@ $(function () {
     getLastestData(1);
     getLastestData(2);
 
-    setTimeout(function () {
+    // 烟雾探测 2s
+    setInterval(function () {
         detect();
     }, 2000);
-    setTimeout(function () {
+
+    // 温度湿度实时数据，5s
+    setInterval(function () {
         getLastestData(1);
         getLastestData(2);
     }, 5000);
 
-    setTimeout(function () {
+    // 温度湿度 图形数据10s
+    setInterval(function () {
         redraw1();
         getChart1(1);
-    },5000);
-
-    setTimeout(function () {
+    },10000);
+    setInterval(function () {
         redraw2();
         getChart2(2);
-    },7000);
+    },13000);
     //图形数据
     chart1 = new Highcharts.Chart({
         chart: {
@@ -195,7 +198,7 @@ $(function () {
  * @param status
  */
 function openOrCloseDoor(status) {
-    
+
     var sucFunc = function (responseData) {
         if (responseData.success) {
             $("#target").text("大门");
@@ -208,13 +211,6 @@ function openOrCloseDoor(status) {
             setTimeout(function () {
                 $("#tip").hide();
             }, 2000);
-        } else {
-            swal({
-                title: "Sorry!",
-                text: responseData.msg,
-                timer: 2000,
-                type: "error"
-            });
         }
     }
     var data = {
@@ -232,18 +228,18 @@ function detect() {
         if (responseData.success) {
             if (responseData.data.msg == 'y') {
                 $("#smoke_status").text("有");
+                $("#smoke_infobox").removeClass("infobox-green");
+                $("#smoke_infobox").addClass("infobox-red");
+                if(!($("#smoke_icon").hasClass("rotate"))) {
+                    $("#smoke_icon").addClass("rotate");
+                }
             }
-            if (responseData.data.msg == 'n')
-            {
+            if (responseData.data.msg == 'n') {
                 $("#smoke_status").text("无");
+                $("#smoke_infobox").removeClass("infobox-red");
+                $("#smoke_infobox").addClass("infobox-green");
+                $("#smoke_icon").removeClass("rotate");
             }
-        } else {
-            swal({
-                title: "Sorry!",
-                text: responseData.msg,
-                timer: 2000,
-                type: "error"
-            });
         }
     }
 
@@ -261,13 +257,15 @@ function getLastestData(temp_or_hum) {
                 if (changeData > 0) {
                     $("#temp_change_value").text("+" + changeData);
                     $("#temp-status").removeClass("icon-arrow-down");
-                    $("#temp-status").removeClass("icon-arrow-up");
+                    $("#temp-status").addClass("icon-arrow-up");
                 } else if (changeData < 0) {
                     $("#temp_change_value").text(changeData);
                     $("#temp-status").removeClass("icon-arrow-up");
-                    $("#temp-status").removeClass("icon-arrow-down");
+                    $("#temp-status").addClass("icon-arrow-down");
                 } else {
                     $("#temp_change_value").text(changeData);
+                    $("#hum-status").removeClass("icon-arrow-up");
+                    $("#hum-status").removeClass("icon-arrow-down");
                 }
             }
             if (temp_or_hum == 2) {
@@ -276,22 +274,17 @@ function getLastestData(temp_or_hum) {
                 if (changeData > 0) {
                     $("#hum_change_value").text("+" + changeData);
                     $("#hum-status").removeClass("icon-arrow-down");
-                    $("#hum-status").removeClass("icon-arrow-up");
+                    $("#hum-status").addClass("icon-arrow-up");
                 } else if (changeData < 0) {
                     $("#hum_change_value").text(changeData);
                     $("#hum-status").removeClass("icon-arrow-up");
-                    $("#hum-status").removeClass("icon-arrow-down");
+                    $("#hum-status").addClass("icon-arrow-down");
                 } else {
                     $("#hum_change_value").text(changeData);
+                    $("#hum-status").removeClass("icon-arrow-up");
+                    $("#hum-status").removeClass("icon-arrow-down");
                 }
             }
-        } else {
-            swal({
-                title: "Sorry!",
-                text: responseData.msg,
-                timer: 2000,
-                type: "error"
-            });
         }
     }
     var data = {
@@ -312,13 +305,6 @@ function getChart1(temp_or_hum) {
             for (var i = responseData.data.length - 1; i >= 0; i --) {
                 series.addPoint(responseData.data[i], true, false);
             }
-        } else {
-            swal({
-                title: "Sorry!",
-                text: responseData.msg,
-                timer: 2000,
-                type: "error"
-            });
         }
     }
     var data = {
@@ -338,13 +324,6 @@ function getChart2(temp_or_hum) {
             for (var i = responseData.data.length - 1; i >= 0; i --) {
                 series.addPoint(responseData.data[i], true, false);
             }
-        } else {
-            swal({
-                title: "Sorry!",
-                text: responseData.msg,
-                timer: 2000,
-                type: "error"
-            });
         }
     }
     var data = {

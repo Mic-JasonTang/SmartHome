@@ -13,10 +13,10 @@ var domain = url.match(/http[s]?:\/\/(.*?)([:\/]|$)/);
  */
 var BASE_URL = domain[0] + "10240/smarthome";
 /**
- * 超时时间设置为10s
+ * 超时时间设置为20s
  * @type {number}
  */
-var TIMEOUT = 10000;
+var TIMEOUT = 20000;
 
 var login_uri = "/user/login";
 var reg_uri = "/user/signup";

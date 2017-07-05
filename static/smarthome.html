@@ -5,11 +5,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
 <link href="css/ace.min.css" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="css/hightcharts/highcharts.css"/>
+<link href="css/hightcharts/highcharts.css" type="text/css" rel="stylesheet" />
 <link href="css/page.css" rel="stylesheet">
 <link href="css/font-awesome.min.css" rel="stylesheet">
 <link href="css/bootstrap-switch/bootstrap-switch.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="js/sweetalert-1.1.1/sweetalert.css">
+<link href="js/sweetalert-1.1.1/sweetalert.css" rel="stylesheet" type="text/css" >
+<link href="css/style.css" rel="stylesheet" type="text/css" >
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/bootstrap/bootstrap.min.js"></script>
 <script src="js/bootstrap-switch/bootstrap-switch.min.js"></script>
@@ -44,19 +45,22 @@
                     <div class="infobox-icon">
                         <i class="icon-lock"></i>
                     </div>
-                    <div class="controll-lable">
+                    <div class="controll-lable" title="">
                         <span class="controll-num">大门</span>
                         <div class="infobox-content">门锁</div>
                     </div>
                     <div class="controll">
-                        <div class="switch">
+                        <div class="switch" style="margin-left: 45px;">
                             <input id="door" type="checkbox" checked/>
+                        </div>
+                        <div class="badge badge-info" style="margin-top: 23px">
+                            1号楼1楼1号房间大门
                         </div>
                     </div>
                 </div>
 
-                <div class="infobox infobox-green2  ">
-                    <div class="infobox-icon">
+                <div id="smoke_infobox" class="infobox infobox-green ">
+                    <div id="smoke_icon" class="infobox-icon">
                         <i class="icon-fire"></i>
                     </div>
                     <div class="controll-lable">
@@ -64,13 +68,13 @@
                         <div class="infobox-content">烟雾</div>
                     </div>
                     <div class="controll">
-                        <div class="switch">
-                            <input id="yanwu" type="checkbox" checked disabled/>
+                        <div class="badge badge-info" style="margin-top: 54px;">
+                            1号楼1楼1号房间厨房
                         </div>
                     </div>
                 </div>
 
-                <div class="infobox infobox-pink  ">
+                <div class="infobox infobox-purple ">
                     <div class="infobox-icon">
                         <i class="icon-fire"></i>
                     </div>
@@ -80,7 +84,12 @@
                     </div>
                     <div class="badge badge-success">
                         <span id="temp_change_value">0</span>℃
-                        <i id="temp-status" class="icon-arrow-down"></i>
+                        <i id="temp-status" class=""></i>
+                    </div>
+                    <div class="controll " >
+                        <div class="badge badge-info" style="margin-top: 54px;">
+                            1号楼1楼1号房间1号卧室
+                        </div>
                     </div>
                 </div>
 
@@ -94,14 +103,24 @@
                     </div>
                     <div class="badge badge-danger">
                         <span id="hum_change_value">0</span>%
-                        <i id="hum-status" class="icon-arrow-up"></i>
+                        <i id="hum-status" class=""></i>
+                    </div>
+                    <div class="controll " >
+                        <div class="badge badge-info" style="margin-top: 54px;">
+                            1号楼1楼1号房间1号卧室
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
+
+        <!-- 空白 -->
         <div class="space-6"></div>
         <div class="blank">
-            <div class="alert alert-success" id="tip" style="display: none">
+            <div class="alert alert-success" id="tip" style="display: none; margin-top: 20px">
                 <button type="button" class="close" data-dismiss="alert">
                     <i class="icon-remove"></i>
                 </button>
@@ -135,7 +154,7 @@
                         </div>
                         <div class="controll">
                             <div class="switch">
-                                <input id="keting" type="checkbox" checked/>
+                                <input id="keting" type="checkbox" checked disabled/>
                             </div>
                         </div>
                     </div>
@@ -150,7 +169,7 @@
                         </div>
                         <div class="controll">
                             <div class="switch">
-                                <input id="zhuwo" type="checkbox" checked/>
+                                <input id="zhuwo" type="checkbox" checked disabled/>
                             </div>
                         </div>
                     </div>
@@ -165,7 +184,7 @@
                         </div>
                         <div class="controll">
                             <div class="switch">
-                                <input id="ciwo" type="checkbox" checked/>
+                                <input id="ciwo" type="checkbox" checked disabled/>
                             </div>
                         </div>
                     </div>
@@ -180,7 +199,7 @@
                         </div>
                         <div class="controll">
                             <div class="switch">
-                                <input id="kitchen" type="checkbox" checked/>
+                                <input id="kitchen" type="checkbox" checked disabled/>
                             </div>
                         </div>
                     </div>
@@ -244,7 +263,7 @@
 
                     <div class="clearfix">
                         <div id="container1" style="min-width:400px;height:250px"></div>
-                        <div id="container2" style="min-width:400px;height:350px"></div>
+                        <div id="container2" style="min-width:400px;height:250px"></div>
                     </div>
                 </div><!-- /widget-main -->
             </div><!-- /widget-body -->

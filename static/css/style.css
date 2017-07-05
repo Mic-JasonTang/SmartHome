@@ -111,3 +111,35 @@ input[type="search"] {
 .sweet-alert .sa-input-error {
     top: 15px;
 }
+
+
+/*旋转*/
+.rotate {
+    -webkit-animation: run 5s linear 0s infinite;
+}
+@-moz-keyframes run{
+    0%{
+
+        -webkit-transform: rotate(0deg);
+        border:5px solid red;
+
+    }
+    50%{
+        -webkit-transform: rotate(180deg);
+        background:black;
+        border:5px solid yellow;
+    }
+    100%{
+        -webkit-transform: rotate(360deg);
+        background:white;
+        border:5px solid red;
+    }
+}
+@-webkit-keyframes run{
+    from{
+        -webkit-transform:rotate(0deg);
+    }
+    to{
+        -webkit-transform:rotate(360deg);
+    }
+}
