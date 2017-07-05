@@ -7,6 +7,7 @@ import com.smarthome.mybatis.dto.ResponseMsg;
 import com.smarthome.mybatis.dto.SensorDataDTO;
 import com.smarthome.mybatis.dto.ServiceResult;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,17 +43,31 @@ public class SmartHomeController {
     }
 
     /**
+     * 获取门的状态
+     * @return
+     */
+    @ApiOperation("获取门的状态")
+    @RequestMapping(value = "/getStatus", method = RequestMethod.GET)
+    public ServiceResult<ResponseMsg> openOrCloseDoor() {
+
+        return smartHomeService.getDoorStatus();
+    }
+    /**
      * 获取最新的一个数据
      * @param temp_or_hum 温度或者湿度
      *                    1 表示温度  2 表示 湿度
      * @return
      */
     @ApiOperation("获取最新温度湿度数据")
-    @ApiImplicitParam(name = "temp_or_hum", value = "1表示温度,2表示湿度", required = true, dataType = "int")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "temp_or_hum", value = "1表示温度,2表示湿度", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "roomOrder", value = "房间编号", required = true, dataType = "int")
+        }
+    )
     @RequestMapping(value = "/get", method = RequestMethod.GET)
-    public ServiceResult<SensorDataDTO> getLastestData(int temp_or_hum) {
+    public ServiceResult<SensorDataDTO> getLastestData(int temp_or_hum, int roomOrder) {
 
-        return smartHomeService.getLastestData(temp_or_hum);
+        return smartHomeService.getLastestData(temp_or_hum, roomOrder);
     }
 
     /**
@@ -62,21 +77,30 @@ public class SmartHomeController {
      * @return
      */
     @ApiOperation("获取最新温度湿度图表数据")
-    @ApiImplicitParam(name = "temp_or_hum", value = "1表示温度,2表示湿度", required = true, dataType = "int")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "temp_or_hum", value = "1表示温度,2表示湿度", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "roomOrder", value = "房间编号", required = true, dataType = "int")
+        }
+    )
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public ServiceResult<List<ChartData>> getDataList(int temp_or_hum) {
+    public ServiceResult<List<ChartData>> getDataList(int temp_or_hum, int roomOrder) {
 
-        return smartHomeService.getDataList(temp_or_hum);
+        return smartHomeService.getDataList(temp_or_hum, roomOrder);
     }
 
     /**
-     * 检测是否有烟雾
+     * 检测是否有烟雾或者液化气
      * @return
      */
-    @ApiOperation("检测是否有烟雾")
+    @ApiOperation("检测是否有烟雾或者液化气")
     @RequestMapping(value = "/detect", method = RequestMethod.GET)
-    public ServiceResult<ResponseMsg> hasSmoke() {
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "smoke_or_gas", value = "1表示烟雾,2表示液化气", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "roomOrder", value = "房间编号", required = true, dataType = "int")
+        }
+    )
+    public ServiceResult<ResponseMsg> hasSmoke(int smoke_or_gas, int roomOrder) {
 
-        return smartHomeService.hasSmoke();
+        return smartHomeService.hasSmokeOrGas(smoke_or_gas, roomOrder);
     }
 }

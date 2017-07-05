@@ -20,8 +20,11 @@ public interface SensorDataMapper {
 
     /**
      * 根据sensorId查看 数据集
+     *
      * @param sensorId
      * @return
      */
-    List<SensorData> selectListBySensorId(@Param("sensorId") int sensorId, @Param("length") int length);
+    List<SensorData> selectListBySensorIdAndRoomOrder(@Param("sensorId") int sensorId, @Param("roomOrder") int roomOrder, @Param("length") int length);
+
+    SensorData selectBySensorId(int sensorId);
 }

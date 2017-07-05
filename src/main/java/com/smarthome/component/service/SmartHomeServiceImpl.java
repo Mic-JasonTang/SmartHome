@@ -132,13 +132,29 @@ public class SmartHomeServiceImpl implements SmartHomeService{
     }
 
     /**
+     * 获取大门的状态
+     * @return
+     */
+    @Override
+    public ServiceResult<ResponseMsg> getDoorStatus() {
+        ServiceResult<ResponseMsg> serviceResult = new ServiceResult<>();
+        SensorData sensorData = sensorDataMapper.selectBySensorId(sensorConfig.getDoorId());
+        if (sensorData.getSensorValue().equals("1")) {
+            serviceResult.setData(new ResponseMsg(Msg.YES));
+        } else {
+            serviceResult.setData(new ResponseMsg(Msg.NO));
+        }
+        return serviceResult;
+    }
+
+    /**
      *
      * @param temp_or_hum 温度或者湿度
      *                    1 表示温度  2 表示 湿度
      * @return
      */
     @Override
-    public ServiceResult<SensorDataDTO> getLastestData(int temp_or_hum) {
+    public ServiceResult<SensorDataDTO> getLastestData(int temp_or_hum, int roomOrder) {
         ServiceResult<SensorDataDTO> serviceResult = new ServiceResult<>();
         ServiceResult<UserDTO> userDTOServiceResult = userService.getLoginedUser();
         // 如果请求没有成功,表示没有登录
@@ -158,7 +174,7 @@ public class SmartHomeServiceImpl implements SmartHomeService{
         // 湿度
             sensorId = sensorConfig.getHumidityId();
         }
-        List<SensorData> sensorDataList = sensorDataMapper.selectListBySensorId(sensorId, LENGTH);
+        List<SensorData> sensorDataList = sensorDataMapper.selectListBySensorIdAndRoomOrder(sensorId, roomOrder, LENGTH);
         if (sensorDataList.size() == 0) {
             serviceResult.setMsg("没有找到记录");
             return serviceResult;
@@ -184,7 +200,7 @@ public class SmartHomeServiceImpl implements SmartHomeService{
      * @return
      */
     @Override
-    public ServiceResult<List<ChartData>> getDataList(int temp_or_hum) {
+    public ServiceResult<List<ChartData>> getDataList(int temp_or_hum, int roomOrder) {
         ServiceResult<List<ChartData>> serviceResult = new ServiceResult<>();
         ServiceResult<UserDTO> userDTOServiceResult = userService.getLoginedUser();
         // 如果请求没有成功,表示没有登录
@@ -204,7 +220,7 @@ public class SmartHomeServiceImpl implements SmartHomeService{
         // 湿度
             sensorId = sensorConfig.getHumidityId();
         }
-        List<SensorData> sensorDataList = sensorDataMapper.selectListBySensorId(sensorId, LENGTH);
+        List<SensorData> sensorDataList = sensorDataMapper.selectListBySensorIdAndRoomOrder(sensorId, roomOrder, LENGTH);
         if (sensorDataList.size() == 0) {
             serviceResult.setMsg("没有找到记录");
             return serviceResult;
@@ -220,7 +236,7 @@ public class SmartHomeServiceImpl implements SmartHomeService{
     }
 
     @Override
-    public ServiceResult<ResponseMsg> hasSmoke() {
+    public ServiceResult<ResponseMsg> hasSmokeOrGas(int smoke_or_gas, int roomOrder) {
         ServiceResult<ResponseMsg> serviceResult = new ServiceResult<>();
         ServiceResult<UserDTO> userDTOServiceResult = userService.getLoginedUser();
         // 如果请求没有成功,表示没有登录
@@ -228,8 +244,18 @@ public class SmartHomeServiceImpl implements SmartHomeService{
             serviceResult.setMsg(userDTOServiceResult.getMsg());
             return serviceResult;
         }
-        int sensorId = sensorConfig.getSmokeId();
-        List<SensorData> sensorData = sensorDataMapper.selectListBySensorId(sensorId, 1);
+        int sensorId;
+        if (smoke_or_gas != 1 && smoke_or_gas != 2) {
+            serviceResult.setMsg("参数错误");
+            return serviceResult;
+        }
+        if (smoke_or_gas == 1) {
+            sensorId = sensorConfig.getSmokeId();
+        } else {
+            sensorId = sensorConfig.getInflammableId();
+        }
+
+        List<SensorData> sensorData = sensorDataMapper.selectListBySensorIdAndRoomOrder(sensorId, roomOrder,1);
         if (sensorData.size() == 0) {
             serviceResult.setMsg("没有数据");
             return serviceResult;
@@ -242,4 +268,5 @@ public class SmartHomeServiceImpl implements SmartHomeService{
         serviceResult.setSuccess(true);
         return serviceResult;
     }
+
 }

@@ -25,8 +25,8 @@ var get_logined_user_uri = "/user"
 var logout_uri = "/user";
 var get_user_uri = "/user/get/";
 var update_uri = "/user"
-
 var openOrCloseDoor_uri = "/smarthome/openOrClose";
+var getDoorStatus_uri = "/smarthome/getStatus";
 var detect_uri = "/smarthome/detect";
 var getLastestData_uri = "/smarthome/get";
 var getListData_uri = "/smarthome/list";

@@ -93,10 +93,16 @@
     where sdId = #{sdId,jdbcType=INTEGER}
   </update>
 
-  <select id="selectListBySensorId" resultType="com.smarthome.mybatis.po.SensorData" >
+  <select id="selectListBySensorIdAndRoomOrder" resultType="com.smarthome.mybatis.po.SensorData" >
     select
     <include refid="Base_Column_List" />
     from sensor_data
-    where sensorId = #{sensorId,jdbcType=INTEGER} order by logtime DESC limit 0, #{length}
+    where sensorId = #{sensorId,jdbcType=INTEGER} and roomOrder = #{roomOrder,jdbcType=INTEGER} order by logtime DESC limit 0, #{length}
+  </select>
+  <select id="selectBySensorId" resultType="com.smarthome.mybatis.po.SensorData" >
+    select
+    <include refid="Base_Column_List" />
+    from sensor_data
+    where sensorId = #{sensorId,jdbcType=INTEGER} order by logtime DESC limit 0, 1
   </select>
 </mapper>

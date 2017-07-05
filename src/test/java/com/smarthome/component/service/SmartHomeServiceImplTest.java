@@ -46,20 +46,20 @@ public class SmartHomeServiceImplTest {
 
     @Test
     public void getLastestData() throws Exception {
-        ServiceResult<SensorDataDTO> serviceResult = smartHomeService.getLastestData(2);
+        ServiceResult<SensorDataDTO> serviceResult = smartHomeService.getLastestData(2,101010);
         System.out.println(serviceResult);
     }
 
     @Test
     public void getDataList() throws Exception {
 
-        ServiceResult<List<ChartData>> serviceResult = smartHomeService.getDataList(2);
+        ServiceResult<List<ChartData>> serviceResult = smartHomeService.getDataList(2, 101010);
         System.out.println(serviceResult);
     }
 
     @Test
     public void hasSmoke() throws Exception {
-        ServiceResult<ResponseMsg> serviceResult = smartHomeService.hasSmoke();
+        ServiceResult<ResponseMsg> serviceResult = smartHomeService.hasSmokeOrGas(1, 101010);
         System.out.println(serviceResult);
     }
 
